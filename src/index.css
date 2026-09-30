@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-brand-dark bg-brand-light font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-brand-white bg-brand-navy hover:bg-brand-orange transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-navy;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-brand-navy text-base font-medium rounded-md text-brand-navy hover:bg-brand-navy hover:text-brand-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-navy bg-transparent;
+  }
+
+  .card {
+    @apply bg-brand-white rounded-lg shadow-sm border border-brand-gray/20 overflow-hidden hover:shadow-md hover:-translate-y-1 hover:border-brand-orange/50 transition-all duration-300;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Angled sections */
+  .angled-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  }
+  
+  .angled-top {
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  }
+}
