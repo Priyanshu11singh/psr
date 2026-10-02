@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Check, ArrowRight, ChevronRight, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, Check, ChevronRight, ArrowUp } from 'lucide-react';
 import logoImg from '../assets/images/logo.jpeg';
 
 interface FooterLink {

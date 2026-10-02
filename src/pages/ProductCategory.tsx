@@ -1,6 +1,6 @@
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, FileText, ArrowRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import singleBurnerImg from '../assets/product/single-burner.webp';
 import doubleBurnerImg from '../assets/product/double-burner.webp';
 import threeBurnerImg from '../assets/product/3burner.webp';
@@ -10,6 +10,26 @@ import chapattiImg from '../assets/product/chapatti.webp';
 import griddlePlateImg from '../assets/product/griddle-plate.webp';
 import doubleDeepFatFryerImg from '../assets/product/double-deep-fat fryer.webp';
 import salamanderImg from '../assets/product/salamander.webp';
+import hotDogTrolleyImg from '../assets/product/hot-dog-trolley.webp';
+import masalaTrolleyImg from '../assets/product/masala.webp';
+import platformTrolleyImg from '../assets/product/platform-trolley20200415421.webp';
+import bussingCartImg from '../assets/product/bussing-cart20200415425.webp';
+import teaServiceTrolleyImg from '../assets/product/tea-service-trolley20200415430.webp';
+import luggageTrolleyImg from '../assets/product/luggage-trolley20200415435.webp';
+import gnPanTrolleyImg from '../assets/product/gn-pan-trolley20200415450.webp';
+import plateRack1Img from '../assets/product/plate-rack120200415455.webp';
+import trayRackTrolleyImg from '../assets/product/tray-rack-trolley20200415457.webp';
+import cleanDishRackImg from '../assets/product/clean-dish-rack20200415501.webp';
+import aluminumRackImg from '../assets/product/aluminum-rack20200415505.webp';
+import potRackImg from '../assets/product/pot-rack20200415509.webp';
+import vegetableRackImg from '../assets/product/vegetable-rack20200415511.webp';
+import plateRack2Img from '../assets/product/plate-rack20200415519.webp';
+import storageRackImg from '../assets/product/storage-rack20200415525.webp';
+import islandSuitesSideAImg from '../assets/product/island-suites-side-a.jpg';
+import islandSuitesSideBImg from '../assets/product/island-suites-side-b.jpg';
+import islandSuitesNewSideAImg from '../assets/product/island-suites-new-side-a.jpg';
+import islandSuitesNewSideBImg from '../assets/product/island-suites-new-side-b.jpg';
+
 const categories = [
   { label: "Cooking Equipment", href: "/products/cooking" },
   { label: "Refrigeration Equipment", href: "/products/refrigeration" },
@@ -34,6 +54,31 @@ export const cookingProducts = [
   { name: 'Salamander', image: salamanderImg },
 ];
 
+export const trolleyRacksProducts = [
+  { name: 'Hot Dog Trolley', image: hotDogTrolleyImg },
+  { name: 'Masala Trolley', image: masalaTrolleyImg },
+  { name: 'Platform Trolley', image: platformTrolleyImg },
+  { name: 'Bussing Cart', image: bussingCartImg },
+  { name: 'Tea Service Trolley', image: teaServiceTrolleyImg },
+  { name: 'Luggage Trolley', image: luggageTrolleyImg },
+  { name: 'GN Pan Trolley', image: gnPanTrolleyImg },
+  { name: 'Plate Rack', image: plateRack1Img },
+  { name: 'Tray Rack Trolley', image: trayRackTrolleyImg },
+  { name: 'Clean Dish Rack', image: cleanDishRackImg },
+  { name: 'Aluminium Rack', image: aluminumRackImg },
+  { name: 'Pot Rack', image: potRackImg },
+  { name: 'Vegetable Rack', image: vegetableRackImg },
+  { name: 'Plate Rack', image: plateRack2Img },
+  { name: 'Storage Rack', image: storageRackImg },
+];
+
+export const islandKitchenProducts = [
+  { name: 'Island Suites Side-A', image: islandSuitesSideAImg },
+  { name: 'Island Suites Side-B', image: islandSuitesSideBImg },
+  { name: 'Island Suites New Series Side-A', image: islandSuitesNewSideAImg },
+  { name: 'Island Suites New Series Side-B', image: islandSuitesNewSideBImg },
+];
+
 export default function ProductCategory() {
   const { category } = useParams();
   const location = useLocation();
@@ -41,6 +86,15 @@ export default function ProductCategory() {
   // Format category string (e.g. 'cooking' -> 'Cooking Equipment')
   const currentCategory = categories.find(c => c.href.includes(category || '')) ||
     { label: category?.replace(/-/g, ' ') || 'Products', href: '#' };
+
+  let displayedProducts = [];
+  if (category === 'trolley-racks') {
+    displayedProducts = trolleyRacksProducts;
+  } else if (category === 'island-kitchen') {
+    displayedProducts = islandKitchenProducts;
+  } else {
+    displayedProducts = cookingProducts;
+  }
 
   return (
     <div className="pt-24 pb-16 bg-gray-50 min-h-screen">
@@ -77,7 +131,7 @@ export default function ProductCategory() {
           {/* Main Grid Content */}
           <div className="w-full lg:w-3/4 order-2 lg:order-1">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {cookingProducts.map((product, idx) => (
+              {displayedProducts.map((product, idx) => (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -123,8 +177,8 @@ export default function ProductCategory() {
                       <Link
                         to={cat.href}
                         className={`block px-6 py-3.5 text-sm font-medium transition-colors ${isActive
-                            ? 'text-brand-orange bg-brand-orange/5 border-l-4 border-brand-orange'
-                            : 'text-gray-600 hover:text-brand-orange hover:bg-gray-50 border-l-4 border-transparent'
+                          ? 'text-brand-orange bg-brand-orange/5 border-l-4 border-brand-orange'
+                          : 'text-gray-600 hover:text-brand-orange hover:bg-gray-50 border-l-4 border-transparent'
                           }`}
                       >
                         {cat.label}

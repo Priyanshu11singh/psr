@@ -1,11 +1,18 @@
 import { useParams, Link } from 'react-router-dom';
-import { cookingProducts } from './ProductCategory';
+import { cookingProducts, trolleyRacksProducts, islandKitchenProducts } from './ProductCategory';
 
 export default function ProductDetail() {
   const { category, slug } = useParams();
 
+  let productsList = cookingProducts;
+  if (category === 'trolley-racks') {
+    productsList = trolleyRacksProducts;
+  } else if (category === 'island-kitchen') {
+    productsList = islandKitchenProducts;
+  }
+
   // Find the product data based on the slug
-  const product = cookingProducts.find(
+  const product = productsList.find(
     (p) => p.name.toLowerCase().replace(/ /g, '-') === slug
   );
 

@@ -1,0 +1,123 @@
+import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ChevronRight, Wind } from 'lucide-react';
+
+const serviceCategories = [
+  { label: "Consultancy", href: "/services/consultancy" },
+  { label: "Layout Designing & Kitchen Solutions", href: "/services/layout-design" },
+  { label: "L.P.G Pipeline Designing & Installation", href: "/services/lpg-pipeline" },
+  { label: "Exhaust System Ducting", href: "/services/exhaust-ducting" },
+  { label: "Fresh Air Supply System", href: "/services/fresh-air" },
+  { label: "AMC", href: "/services/amc" },
+];
+
+export default function FreshAir() {
+  const location = useLocation();
+
+  return (
+    <div className="pt-24 pb-16 bg-gray-50 min-h-screen">
+      {/* Inner Banner */}
+      <section className="bg-brand-navy py-12 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+        <div className="container-custom relative z-10">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl md:text-4xl font-heading font-bold text-white mb-4"
+          >
+            Fresh Air Supply System
+          </motion.h1>
+          <motion.nav
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center text-sm font-medium text-white/70"
+          >
+            <Link to="/" className="hover:text-brand-orange transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4 mx-2" />
+            <Link to="/services" className="hover:text-brand-orange transition-colors">Services</Link>
+            <ChevronRight className="w-4 h-4 mx-2" />
+            <span className="text-brand-orange">Fresh Air Supply</span>
+          </motion.nav>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="container-custom py-12">
+        <div className="flex flex-col lg:flex-row gap-8">
+          
+          {/* Main Article Content */}
+          <div className="w-full lg:w-3/4 order-2 lg:order-1">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100 text-brand-gray text-base leading-relaxed"
+            >
+              
+              <div className="mb-8 flex items-center justify-center p-8 bg-blue-50/50 rounded-xl border border-blue-100/50 text-blue-900">
+                <Wind className="w-16 h-16 mr-6 text-brand-orange opacity-80" />
+                <p className="text-xl font-medium font-heading">
+                  Ventilation plays an important role in providing comfortable and productive working conditions and in securing contaminant removal.
+                </p>
+              </div>
+
+              <p className="mb-5">
+                In a commercial kitchen, working conditions are especially demanding. There are four main factors affecting thermal comfort, these being: air temperature, radiation, air velocity and air humidity. At the same time, high emission rates of contaminants are released from the cooking process.
+              </p>
+              
+              <p className="mb-5">
+                The science of commercial kitchen ventilation includes both exhausting air as well as providing replacement air within the cooking area. Whether a restaurant is a small free-standing site or a large institutional kitchen, managing and balancing airflow is a complex issue. 
+              </p>
+
+              <p className="mb-5">
+                It is a challenge to properly ventilate commercial kitchens, as they require moving large volumes of air through ductwork and equipment placement in very restricted spaces. So proper implementation of exhaust hoods with fresh air supply is necessary for every commercial kitchen creating a healthy environment.
+              </p>
+              
+              <p className="mb-8 font-medium text-brand-navy">
+                PSR Equipment offers performance enhancing ventilation products for commercial kitchen, centrifugal exhaust blowers for industries, for comfortable, energy-efficient, and safe environments for commercial kitchen. We provide solutions for creating positive indoor environment experiences for chefs and others working in the kitchen.
+              </p>
+
+              <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-100">
+                <Link to="/contact" className="btn-primary">
+                  Send Enquiry
+                </Link>
+                <Link to="/contact" className="px-6 py-3 rounded-lg font-bold border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white transition-colors duration-300">
+                  Contact Us
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Sidebar */}
+          <aside className="w-full lg:w-1/4 order-1 lg:order-2 space-y-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden sticky top-32">
+              <h3 className="bg-brand-navy text-white px-6 py-4 font-heading font-bold uppercase tracking-wider text-sm">
+                Services
+              </h3>
+              <ul className="divide-y divide-gray-100">
+                {serviceCategories.map((cat, i) => {
+                  const isActive = location.pathname === cat.href;
+                  return (
+                    <li key={i}>
+                      <Link
+                        to={cat.href}
+                        className={`block px-6 py-3.5 text-sm font-medium transition-colors ${
+                          isActive
+                            ? 'text-brand-orange bg-brand-orange/5 border-l-4 border-brand-orange'
+                            : 'text-gray-600 hover:text-brand-orange hover:bg-gray-50 border-l-4 border-transparent'
+                        }`}
+                      >
+                        {cat.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </aside>
+
+        </div>
+      </section>
+    </div>
+  );
+}
